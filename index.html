@@ -1,183 +1,317 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bhavya Agarwal | Data Analyst & Developer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-    * {margin:0; padding:0; box-sizing:border-box;}
-    html {scroll-behavior:smooth;}
-    body {font-family:'Poppins',sans-serif; line-height:1.6; background:#f8fafc; color:#111827;}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Bhavya Agarwal — Data Analyst & Developer</title>
+<meta name="description" content="Portfolio of Bhavya Agarwal — Data analysis (Excel, Power BI, SQL) & development (React, Java)." />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --accent:#05472A;
+    --accent-2:#0A6B43;
+    --bg:#eef7f3;
+    --card:#ffffff;
+    --muted:#475248;
+    --glass: rgba(255,255,255,0.85);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Poppins',system-ui,Arial,sans-serif;margin:0;background:var(--bg);color:#0d1c16;min-height:100vh}
 
-    /* Navbar */
-    nav {
-      display:flex; justify-content:space-between; align-items:center;
-      padding:1rem 2rem; background:rgba(30,58,138,0.9); color:#fff;
-      position:fixed; top:0; width:100%; z-index:100; backdrop-filter:blur(10px);
-    }
-    nav ul {display:flex; list-style:none; gap:1.5rem;}
-    nav a {color:#fff; font-weight:500; transition:0.3s;}
-    nav a:hover {color:#93c5fd;}
-    .btn {
-      background:#60a5fa; color:#fff; padding:0.6rem 1rem;
-      border:none; border-radius:6px; font-weight:600; transition:0.3s;
-    }
-    .btn:hover {background:#3b82f6; transform:scale(1.05);}
+  /* left side nav */
+  .side-nav{
+    position:fixed;left:0;top:0;width:84px;height:100vh;background:linear-gradient(180deg,var(--accent),var(--accent-2));
+    display:flex;flex-direction:column;align-items:center;padding:22px 8px;gap:18px;z-index:1300;
+  }
+  .brand-vertical{color:#fff;font-weight:700;writing-mode:vertical-rl;transform:rotate(180deg);font-size:14px}
+  .side-item{color:#dff6eb;text-decoration:none;font-weight:700;writing-mode:vertical-rl;transform:rotate(180deg);opacity:0.95}
+  .side-item:hover{opacity:1;transform:rotate(180deg) translateX(-4px);}
 
-    /* Hero */
-    header {
-      background: url('bg.jpg') no-repeat center/cover;
-      color:#ffffffac; text-align:center; padding:8rem 1rem 5rem; position:relative;
-    }
-    header::after {
-      content:''; position:absolute; top:0; left:0; right:0; bottom:0;
-      background:rgba(0,0,0,0.55);
-    }
-    header .content {position:relative; z-index:1;}
-    header img {
-      width:160px; height:160px; border-radius:50%; border:4px solid #fff;
-      object-fit:cover; margin-bottom:1rem;
-      box-shadow:0 4px 10px rgba(0,0,0,0.3);
-      transition:transform 0.3s ease;
-    }
-    header img:hover {transform:scale(1.05);}
-    header h1 {font-size:2.4rem; margin-bottom:0.5rem;}
-    header p {font-size:1.2rem;}
-    header .btn {margin-top:1.2rem; font-size:1rem;}
+  /* topbar (download) */
+  .topbar{position:fixed;left:84px;right:0;top:0;height:68px;display:flex;align-items:center;justify-content:flex-end;padding:0 22px;background:transparent;z-index:1200}
+  .resume-btn{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;padding:10px 12px;border-radius:10px;text-decoration:none;font-weight:700;display:inline-flex;gap:8px;align-items:center}
 
-    /* Sections */
-    section {max-width:1000px; margin:3rem auto; padding:1rem;}
-    section h2 {
-      margin-bottom:1rem; border-bottom:3px solid #1e3a8a;
-      display:inline-block; padding-bottom:0.3rem; font-size:1.6rem;
-    }
-    .grid {display:grid; gap:1rem;}
-    .two {grid-template-columns:1fr 1fr;}
-    .three {grid-template-columns:repeat(auto-fit,minmax(250px,1fr));}
+  /* hero area */
+  .hero{
+    margin-left:84px;
+    min-height:86vh;
+    display:grid;
+    grid-template-columns:1fr 520px;
+    align-items:center;
+    padding:88px 60px 40px 60px;
+    gap:28px;
+    position:relative;
+  }
 
-    /* Cards */
-    .card {
-      background:#fff; padding:1.2rem; border-radius:10px;
-      box-shadow:0 2px 6px rgba(0,0,0,0.1); transition:transform 0.3s, box-shadow 0.3s;
-    }
-    .card:hover {transform:translateY(-4px); box-shadow:0 4px 12px rgba(0,0,0,0.15);}
-    ul {margin-left:1.2rem;}
-    li {margin-bottom:0.5rem;}
+  .hero-left{padding-right:18px}
+  .hello{color:var(--muted);font-weight:700;letter-spacing:1.6px}
+  .title{font-size:48px;line-height:1.02;margin:8px 0;color:var(--accent);font-weight:800}
+  .subtitle{color:#243a36;max-width:52ch;font-size:16px}
+  .cta-row{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap}
+  .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;padding:12px 18px;border-radius:10px;border:0;font-weight:700;cursor:pointer;box-shadow:0 8px 30px rgba(5,71,42,0.12)}
+  .btn-outline{background:transparent;border:2px solid rgba(5,71,42,0.12);padding:10px 16px;border-radius:10px;color:var(--accent);font-weight:700;cursor:pointer}
 
-    /* Footer */
-    footer {text-align:center; padding:1rem; background:#1e3a8a; color:#fff; margin-top:2rem;}
-    @media(max-width:768px){
-      nav ul{display:none;}
-      header{padding:6rem 1rem 3rem;}
-      header h1{font-size:1.9rem;}
-      .two{grid-template-columns:1fr;}
-    }
-  </style>
+  /* audio player styling */
+  .audio-wrap{margin-top:16px;display:flex;align-items:center;gap:12px}
+  audio{width:320px;border-radius:8px;outline:none}
+
+  /* hero-right image + oval */
+  .hero-right{position:relative;display:flex;align-items:center;justify-content:center}
+  .oval {
+    position:absolute;
+    right:24px;
+    width:420px;height:620px;border-radius:220px;background:linear-gradient(180deg,#dff6ea,#bfead0);
+    filter:blur(2px);transform:translateY(-30px);z-index:1;
+  }
+  .profile-cutout{
+    position:relative;z-index:2;width:360px;transform:translateY(-6px);filter:drop-shadow(0 30px 50px rgba(5,20,10,0.18));
+    border-radius:16px;
+    transition:transform .35s ease, box-shadow .35s ease;
+  }
+  .profile-cutout:hover{transform:translateY(-12px) scale(1.02);box-shadow:0 36px 70px rgba(2,16,8,0.22)}
+
+  /* main content */
+  main{margin-left:84px;padding:32px 60px 64px;max-width:1200px}
+  .card{background:var(--card);padding:20px;border-radius:12px;margin-bottom:18px;box-shadow:0 18px 40px rgba(2,6,6,0.05);opacity:0;transform:translateY(20px);animation:fadeUp .6s ease forwards}
+  .card:nth-child(1){animation-delay:0.08s}
+  .card:nth-child(2){animation-delay:0.16s}
+  .card:nth-child(3){animation-delay:0.24s}
+  .card:nth-child(4){animation-delay:0.32s}
+  @keyframes fadeUp{to{opacity:1;transform:none}}
+
+  h2{margin:0 0 12px;color:var(--accent)}
+  p,li{color:var(--muted);line-height:1.5}
+
+  /* projects grid + hover effects */
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+  .proj{
+    background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 12px 36px rgba(2,6,6,0.06);transition:transform .28s ease,box-shadow .28s ease;
+    display:flex;flex-direction:column;
+  }
+  .proj:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(2,6,6,0.12)}
+  .proj-thumb{width:100%;height:160px;object-fit:cover;background:#f3f6f4}
+  .proj-body{padding:12px}
+  .proj-title{font-weight:700;color:#0d2b21;margin-bottom:6px}
+  .proj-links{display:flex;gap:10px;align-items:center}
+  .proj a{color:var(--accent);font-weight:700;text-decoration:none}
+
+  /* certificates grid */
+  .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+
+  /* responsive */
+  @media(max-width:1100px){
+    .hero{grid-template-columns:1fr 420px;padding:72px 28px 32px 28px}
+    .oval{right:6px;width:320px;height:480px}
+    .profile-cutout{width:260px}
+  }
+  @media(max-width:800px){
+    .hero{grid-template-columns:1fr;padding:120px 18px 24px 18px}
+    .topbar{left:84px}
+    .profile-cutout{width:220px}
+    main{padding:18px}
+  }
+  @media(max-width:600px){
+    .side-nav{width:64px}
+    .brand-vertical{font-size:12px}
+    .hero{padding-top:110px}
+    .topbar{left:64px}
+  }
+
+  .muted{color:var(--muted)}
+</style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav>
-    <h3>Bhavya Agarwal</h3>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <a href="resume.pdf" target="_blank" class="btn">Download Resume</a>
-  </nav>
+  <!-- LEFT SIDE NAV -->
+  <div class="side-nav" role="navigation" aria-label="Main navigation">
+    <div class="brand-vertical">Bhavya</div>
+    <a class="side-item" href="#about">About</a>
+    <a class="side-item" href="#skills">Skills</a>
+    <a class="side-item" href="#projects">Projects</a>
+    <a class="side-item" href="#certs">Certs</a>
+    <a class="side-item" href="#contact">Contact</a>
+  </div>
 
-  <!-- Hero -->
-  <header>
-    <div class="content">
-      <img src="profile.jpg" alt="Bhavya Agarwal">
-      <h1>Bhavya Agarwal</h1>
-      <p>Data Analyst & Software Developer</p>
-      <p>Excel | Power BI | SQL | React | Python</p>
-      <a href="#contact" class="btn">Get in Touch</a>
+  <!-- TOPBAR (download) -->
+  <div class="topbar" role="banner" aria-hidden="false">
+    <a class="resume-btn" href="resume.pdf" target="_blank" rel="noreferrer" aria-label="Download resume">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M12 3v10m0 0 4-4m-4 4-4-4M5 21h14"/></svg>
+      Resume
+    </a>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero" role="region" aria-label="Hero">
+    <div class="hero-left">
+      <div class="hello">HELLO</div>
+      <div class="title">I’m <span>Bhavya Agarwal</span></div>
+      <div class="subtitle">Data Analyst & Software Developer — Excel · Power BI · SQL · Python · React. I turn raw data into clear, actionable insights and build tools to automate reporting.</div>
+
+      <div class="cta-row">
+        <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Hire Me</button>
+        <a class="btn-outline" href="resume.pdf" target="_blank" rel="noreferrer">View Resume</a>
+      </div>
+
+      <!-- audio intro -->
+      <div class="audio-wrap" role="region" aria-label="Audio introduction">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" style="color:var(--accent-2)"><path d="M3 9v6h4l5 4V5L7 9H3z" fill="currentColor"/></svg>
+        <audio controls preload="none">
+          <source src="Hi my name is Bhavya .mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    </div>
+
+    <div class="hero-right" aria-hidden="false">
+      <div class="oval"></div>
+      <img src="profile.jpg" alt="Bhavya Agarwal" class="profile-cutout">
     </div>
   </header>
 
-  <!-- About -->
-  <section id="about">
-    <h2>About Me</h2>
-    <p>I am <strong>Bhavya Agarwal</strong>, a Computer Science Engineer (B.Tech, Poornima College of Engineering, 2024 • 9.0 SGPA). I blend <strong>data analysis</strong> and <strong>software development</strong> to transform raw information into insights and build innovative tools. I am eager to explore, learn, and grow in the fields of analytics and technology.</p>
-  </section>
+  <!-- MAIN CONTENT -->
+  <main>
 
-  <!-- Skills -->
-  <section id="skills">
-    <h2>Skills</h2>
-    <div class="grid two">
-      <div class="card">
-        <h3>Data & Analytics</h3>
-        <ul>
-          <li><strong>Excel:</strong> Power Query, PivotTables, Dashboards</li>
-          <li><strong>Power BI:</strong> DAX, KPIs, Interactive Reports</li>
-          <li><strong>SQL:</strong> Queries, Joins, Aggregations</li>
-          <li><strong>Python:</strong> pandas, data visualization</li>
-        </ul>
+    <!-- ABOUT -->
+    <section id="about" class="card" role="region" aria-labelledby="about-heading">
+      <h2 id="about-heading">About Me</h2>
+      <p class="muted">I am <strong>Bhavya Agarwal</strong>, a B.Tech Computer Science graduate (9.0 SGPA). I combine strong data analysis skills with web development experience to build dashboards, automate reporting, and help teams make data-driven decisions.</p>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="card" role="region" aria-labelledby="skills-heading">
+      <h2 id="skills-heading">Skills</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div>
+          <h4 style="margin:0 0 8px 0">Data & Analytics</h4>
+          <ul>
+            <li><strong>Excel:</strong> PivotTables, Power Query, Dashboards</li>
+            <li><strong>Power BI:</strong> Data modeling, DAX, interactive reports</li>
+            <li><strong>SQL:</strong> Joins, aggregations, data prep</li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="margin:0 0 8px 0">Development</h4>
+          <ul>
+            <li><strong>Web:</strong> HTML, CSS, JavaScript, React</li>
+            <li><strong>Languages:</strong> C++, Java, Python</li>
+            <li><strong>Tools:</strong> Git, VS Code, MS Office</li>
+          </ul>
+        </div>
       </div>
-      <div class="card">
-        <h3>Development</h3>
-        <ul>
-          <li><strong>Languages:</strong> C++, Java, Python</li>
-          <li><strong>Web:</strong> HTML, CSS, JavaScript, React.js</li>
-          <li><strong>Backend:</strong> Node.js, Express, MongoDB</li>
-          <li><strong>Tools:</strong> Git, VS Code, MS Office</li>
-        </ul>
+    </section>
+
+    <!-- PROJECTS with thumbnails (automation removed; crypto added) -->
+    <section id="projects" class="card" role="region" aria-labelledby="projects-heading">
+      <h2 id="projects-heading">Projects</h2>
+      <p class="muted">Click any project to open. Live code and repos are available on my GitHub: <a href="https://github.com/agarwabhavya30" target="_blank" rel="noreferrer">github.com/agarwabhavya30</a></p>
+
+      <div class="projects-grid" style="margin-top:12px;">
+        <!-- Project 1: Sales Dashboard -->
+        <article class="proj" tabindex="0">
+          <img class="proj-thumb" src="1.png" alt="Sales Dashboard thumbnail">
+          <div class="proj-body">
+            <div class="proj-title">Sales Dashboard — Excel</div>
+            <div class="proj-links">
+              <a href="https://github.com/agarwabhavya30" target="_blank" rel="noreferrer">Open (GitHub)</a>
+              <span style="flex:1"></span>
+              <small class="muted">Excel / Dashboard</small>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2: Power BI -->
+        <article class="proj" tabindex="0">
+          <img class="proj-thumb" src="2.png" alt="Power BI thumbnail">
+          <div class="proj-body">
+            <div class="proj-title">Power BI KPI Report</div>
+            <div class="proj-links">
+              <a href="https://github.com/agarwabhavya30" target="_blank" rel="noreferrer">Open (GitHub)</a>
+              <span style="flex:1"></span>
+              <small class="muted">Power BI</small>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3: Book Store (React) -->
+        <article class="proj" tabindex="0">
+          <img class="proj-thumb" src="4.avif" alt="React app thumbnail">
+          <div class="proj-body">
+            <div class="proj-title">Book Store (React)</div>
+            <div class="proj-links">
+              <!-- <a href="https://github.com/agarwabhavya30" target="_blank" rel="noreferrer">Open (GitHub)</a> -->
+              <span style="flex:1"></span>
+              <small class="muted">React / Frontend</small>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 4: Crypto Coin Tracker (added, uses coin grid thumbnail) -->
+        <article class="proj" tabindex="0">
+          <img class="proj-thumb" src="3.png" alt="Crypto Coin thumbnail">
+          <div class="proj-body">
+            <div class="proj-title">Crypto Coin Tracker</div>
+            <div class="proj-links">
+              <a href="https://github.com/agarwabhavya30" target="_blank" rel="noreferrer">Open (GitHub)</a>
+              <span style="flex:1"></span>
+              <small class="muted">React / API / Charts</small>
+            </div>
+          </div>
+        </article>
+
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Projects -->
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="grid two">
-      <div class="card">
-        <h3>Data Projects</h3>
-        <ul>
-          <li><strong>Sales Dashboard (Excel):</strong> Data cleaning & KPI visualization.</li>
-          <li><strong>Company Performance (Power BI):</strong> Interactive reports & trends.</li>
-          <li><strong>HR Analytics:</strong> Retention and hiring insights.</li>
-        </ul>
+    <!-- Certificates -->
+    <section id="certs" class="card" role="region" aria-labelledby="certs-heading">
+      <h2 id="certs-heading">Certificates & Courses</h2>
+      <div class="cert-grid" style="margin-top:12px">
+        <div class="card"><strong>Microsoft Excel for Data Analysis</strong><div class="muted">Coursera / Udemy</div></div>
+        <div class="card"><strong>Power BI for Beginners</strong><div class="muted">LinkedIn Learning</div></div>
+        <div class="card"><strong>SQL Essentials for Data Analysts</strong><div class="muted">Great Learning / NPTEL</div></div>
       </div>
-      <div class="card">
-        <h3>Development Projects</h3>
-        <ul>
-          <li><strong>Book Store (React):</strong> Book search & PDF viewer.</li>
-          <li><strong>Crypto Coin Tracker:</strong> Real-time API charts.</li>
-          <li><strong>Automation Scripts:</strong> Python-based report generation.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Education -->
-  <section id="education">
-    <h2>Education</h2>
-    <div class="grid three">
-      <div class="card"><strong>B.Tech – CSE</strong><br>Poornima College of Engineering<br><em>2020–2024 • 9.0 SGPA</em></div>
-      <div class="card"><strong>Class 12</strong><br>Samar Study Hall, Kashipur<br><em>2019–2020 • 80%</em></div>
-      <div class="card"><strong>Class 10</strong><br>Samar Study Hall, Kashipur<br><em>2017–2018 • 73%</em></div>
-    </div>
-  </section>
+    <!-- Contact -->
+    <section id="contact" class="card" role="region" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Contact</h2>
+      <p class="muted"><strong>Email:</strong> <a href="mailto:agarwalbhavya3026@gmail.com">agarwalbhavya3026@gmail.com</a></p>
+      <p class="muted"><strong>Phone:</strong> <a href="tel:+919411779781">+91 9411779781</a></p>
+      <p class="muted"><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/bhavya-agarwal-a67796214" target="_blank" rel="noreferrer">linkedin.com/in/bhavya-agarwal-a67796214</a></p>
+      <p class="muted"><strong>GitHub:</strong> <a href="https://github.com/agarwabhavya30" target="_blank" rel="noreferrer">github.com/agarwabhavya30</a></p>
+    </section>
 
-  <!-- Contact -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <div class="card">
-      <p><strong>Email:</strong> <a href="mailto:agarwalbhavya3026@gmail.com">agarwalbhavya3026@gmail.com</a><br>
-         <strong>Phone:</strong> <a href="tel:+919411779781">+91 9411779781</a><br>
-         <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/bhavya-agarwal-a67796214" target="_blank">linkedin.com/in/bhavya-agarwal-a67796214</a><br>
-         <strong>Location:</strong> Kashipur, Uttarakhand, India</p>
-    </div>
-  </section>
+  </main>
 
-  <footer>© 2025 Bhavya Agarwal | Data Analyst & Developer</footer>
+  <footer style="margin-left:84px;padding:18px 0 40px 0;text-align:center;color:var(--muted)">© 2025 Bhavya Agarwal — Data Analyst & Developer</footer>
 
+  <script>
+    // Keyboard support for project cards
+    document.querySelectorAll('.proj').forEach(p=>{
+      p.addEventListener('keydown', e=>{
+        if(e.key === 'Enter' || e.key === ' ') {
+          const link = p.querySelector('.proj-links a');
+          if(link) window.open(link.href || 'https://github.com/agarwabhavya30','_blank');
+        }
+      });
+    });
+
+    // Simple scrollspy to soften side items opacity
+    const sideItems = Array.from(document.querySelectorAll('.side-item'));
+    const sections = sideItems.map(i => document.querySelector(i.getAttribute('href')));
+    function onScroll(){
+      const y = window.scrollY + window.innerHeight/3;
+      for(let s of sections){
+        if(!s) continue;
+        const top = s.offsetTop;
+        const bottom = top + s.offsetHeight;
+        if(y >= top && y < bottom){
+          sideItems.forEach(si => si.style.opacity = si.getAttribute('href') === '#' + s.id ? '1' : '0.8');
+        }
+      }
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+  </script>
 </body>
 </html>
-
-
